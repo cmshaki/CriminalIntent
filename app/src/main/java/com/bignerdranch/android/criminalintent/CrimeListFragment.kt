@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +19,6 @@ import java.text.DateFormat
 import java.util.*
 
 private const val TAG = "CrimeListFragment"
-private const val VIEW_TYPE_ONE = 1
 
 class CrimeListFragment: Fragment() {
     /**
@@ -33,7 +31,7 @@ class CrimeListFragment: Fragment() {
     private var callbacks: Callbacks? = null
 
     private lateinit var crimeRecyclerView: RecyclerView
-    private var adapter: CrimeAdapter? = CrimeAdapter(emptyList())
+    private var adapter: CrimeAdapter = CrimeAdapter(emptyList())
 
     private val crimeListViewModel: CrimeListViewModel by lazy {
         ViewModelProvider(this).get(CrimeListViewModel::class.java)
@@ -65,7 +63,7 @@ class CrimeListFragment: Fragment() {
             viewLifecycleOwner,
             { crimes ->
                 crimes.let{
-                    Log.i(TAG, "Got crimes ${crimes.size}")
+                    Log.i(TAG, "Got ${crimes.size} crimes")
                     updateUI(crimes)
                 }
             }
@@ -78,8 +76,14 @@ class CrimeListFragment: Fragment() {
     }
 
     private fun updateUI(crimes: List<Crime>) {
-        adapter = CrimeAdapter(crimes)
+        Log.d(TAG, "This is the CrimeListFragment ${adapter.currentList}")
+        if(adapter.currentList.size == 0) {
+            adapter = CrimeAdapter(crimes)
+        } else {
+            adapter.submitList(crimes)
+        }
         crimeRecyclerView.adapter = adapter
+        Log.d(TAG, "This is the CrimeListFragment ${adapter.currentList}")
     }
 
     private inner class CrimeHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
@@ -127,18 +131,19 @@ class CrimeListFragment: Fragment() {
         override fun getItemCount(): Int = crimes.size
     }
 
+     private object DiffUtilCallback: DiffUtil.ItemCallback<Crime>() {
+        override fun areItemsTheSame(oldItem: Crime, newItem: Crime): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Crime, newItem: Crime): Boolean {
+            return oldItem == newItem
+        }
+    }
+
     companion object {
         fun newInstance(): CrimeListFragment {
             return CrimeListFragment()
-        }
-        object DiffUtilCallback: DiffUtil.ItemCallback<Crime>() {
-            override fun areItemsTheSame(oldItem: Crime, newItem: Crime): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: Crime, newItem: Crime): Boolean {
-                return oldItem == newItem
-            }
         }
     }
 }
