@@ -9,6 +9,7 @@ import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "crime-database"
 
+
 class CrimeRepository private constructor(context: Context) {
 
     private val database : CrimeDatabase = Room.databaseBuilder(

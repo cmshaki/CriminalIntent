@@ -13,8 +13,10 @@
 
     <EditText
         android:id="@+id/crime_title"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints="name"
         android:hint="@string/crime_title_hint"/>
 
     <TextView
@@ -27,7 +29,13 @@
         android:id="@+id/crime_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Wed Nov 14 11:56 EST 2018"/>
+        tools:text="Wed Nov 14 2018"/>
+
+    <Button
+        android:id="@+id/crime_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="11:56 EST"/>
 
     <CheckBox
         android:id="@+id/crime_solved"
