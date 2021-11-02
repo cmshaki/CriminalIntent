@@ -8,4 +8,7 @@
     <string name="crime_date">Crime Date</string>
     <string name="crime_solved">Crime Solved</string>
     <string name="contact_police">Contact Police</string>
+    <string name="new_crime">New Crime</string>
+    <string name="no_crimes">Sorry, no crimes found</string>
+    <string name="add_crime">Add Crime</string>
 </resources>

@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Giani/AndroidStudioProjects/CriminalIntent/app/src/main/res/layout/fragment_crime.xml" value="0.1" />
+        <entry key="..\:/Users/Giani/AndroidStudioProjects/CriminalIntent/app/src/main/res/layout/fragment_crime_list.xml" value="0.1" />
         <entry key="..\:/Users/Giani/AndroidStudioProjects/CriminalIntent/app/src/main/res/layout/fragment_time_picker.xml" value="0.17527173913043478" />
+        <entry key="..\:/Users/Giani/AndroidStudioProjects/CriminalIntent/app/src/main/res/menu/fragment_crime_list.xml" value="0.20677083333333332" />
       </map>
     </option>
   </component>
@@ -12,5 +15,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

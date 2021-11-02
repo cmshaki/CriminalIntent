@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
@@ -132,14 +133,13 @@ class CrimeFragment: Fragment() {
     }
 
     private fun updateUI() {
-        titleField.setText(crime.title)
-        dateButton.text = DateFormat.getDateInstance(DateFormat.FULL).format(this.crime.date)
-        timeButton.text = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(this.crime.date)
-        solvedCheckBox.apply {
-            isChecked = crime.isSolved
-            jumpDrawablesToCurrentState()
-        }
-
+            titleField.setText(crime.title)
+            dateButton.text = DateFormat.getDateInstance(DateFormat.FULL).format(this.crime.date)
+            timeButton.text = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(this.crime.date)
+            solvedCheckBox.apply {
+                isChecked = crime.isSolved
+                jumpDrawablesToCurrentState()
+            }
     }
 
     companion object {
