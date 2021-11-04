@@ -1,12 +1,12 @@
 package com.bignerdranch.android.criminalintent
 
 import android.app.Dialog
-import androidx.fragment.app.DialogFragment
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.widget.TimePicker
 import androidx.core.os.bundleOf
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import java.util.*
 
@@ -14,17 +14,25 @@ private const val ARG_DATE = "date"
 private const val REQUEST_DATE = "0"
 private const val RESULT_DATE = "resultDate"
 
-class TimePickerFragment: DialogFragment(), TimePickerDialog.OnTimeSetListener {
+class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current time as the default values for the picker
         val c = Calendar.getInstance()
         val argDate = arguments?.get(ARG_DATE)
-        if (argDate != null) {c.time = argDate as Date}
+        if (argDate != null) {
+            c.time = argDate as Date
+        }
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
 
         // Create a new instance of TimePickerDialog and return it
-        return TimePickerDialog(requireContext(), this, hour, minute, DateFormat.is24HourFormat(requireContext()))
+        return TimePickerDialog(
+            requireContext(),
+            this,
+            hour,
+            minute,
+            DateFormat.is24HourFormat(requireContext())
+        )
     }
 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {

@@ -19,7 +19,7 @@ import java.util.*
 
 private const val TAG = "CrimeListFragment"
 
-class CrimeListFragment: Fragment() {
+class CrimeListFragment : Fragment() {
     /**
      * Required interface for hosting activities
      */
@@ -55,15 +55,15 @@ class CrimeListFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_crime_list, container, false)
-        noCrimesLayout =  view.findViewById(R.id.no_crimes) as LinearLayout
-        addCrimeButton =  view.findViewById(R.id.add_crime) as Button
+        noCrimesLayout = view.findViewById(R.id.no_crimes) as LinearLayout
+        addCrimeButton = view.findViewById(R.id.add_crime) as Button
 
         crimeRecyclerView =
             view.findViewById(R.id.crime_recycler_view) as RecyclerView
         crimeRecyclerView.layoutManager = LinearLayoutManager(context)
         crimeRecyclerView.adapter = adapter
 
-        addCrimeButton.setOnClickListener{
+        addCrimeButton.setOnClickListener {
             val crime = Crime()
             crimeListViewModel.addCrime(crime)
             callbacks?.onCrimeSelected(crime.id)
@@ -77,7 +77,7 @@ class CrimeListFragment: Fragment() {
         crimeListViewModel.crimeListLiveData.observe(
             viewLifecycleOwner,
             { crimes ->
-                crimes.let{
+                crimes.let {
                     Log.i(TAG, "Got ${crimes.size} crimes")
                     updateUI(crimes)
                 }
@@ -109,12 +109,12 @@ class CrimeListFragment: Fragment() {
 
     private fun updateUI(crimes: List<Crime>) {
         Log.d(TAG, "This is the CrimeListFragment ${adapter.currentList}")
-        if(crimes.isNotEmpty()) {
+        if (crimes.isNotEmpty()) {
             noCrimesLayout.visibility = View.GONE
         } else {
             noCrimesLayout.visibility = View.VISIBLE
         }
-        if(adapter.currentList.size == 0) {
+        if (adapter.currentList.size == 0) {
             adapter = CrimeAdapter(crimes)
         } else {
             adapter.submitList(crimes)
@@ -123,7 +123,8 @@ class CrimeListFragment: Fragment() {
         Log.d(TAG, "This is the CrimeListFragment ${adapter.currentList}")
     }
 
-    private inner class CrimeHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
+    private inner class CrimeHolder(view: View) : RecyclerView.ViewHolder(view),
+        View.OnClickListener {
         private lateinit var crime: Crime
 
         val titleTextView: TextView = itemView.findViewById(R.id.crime_title)
@@ -140,8 +141,8 @@ class CrimeListFragment: Fragment() {
             val myDate = DateFormat.getDateInstance(DateFormat.FULL).format(this.crime.date)
             titleTextView.text = this.crime.title
             dateTextView.text = myDate
-            contactPolice.visibility = if(crime.requiresPolice) View.VISIBLE else View.GONE
-            isSolvedImage.visibility = if(crime.isSolved) View.VISIBLE else View.GONE
+            contactPolice.visibility = if (crime.requiresPolice) View.VISIBLE else View.GONE
+            isSolvedImage.visibility = if (crime.isSolved) View.VISIBLE else View.GONE
         }
 
         override fun onClick(v: View?) {
@@ -149,14 +150,15 @@ class CrimeListFragment: Fragment() {
         }
     }
 
-    private inner class CrimeAdapter(var crimes: List<Crime>): ListAdapter<Crime, CrimeHolder>(DiffUtilCallback) {
+    private inner class CrimeAdapter(var crimes: List<Crime>) :
+        ListAdapter<Crime, CrimeHolder>(DiffUtilCallback) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrimeHolder {
             val view = layoutInflater.inflate(R.layout.list_item_crime, parent, false)
             return CrimeHolder(view)
         }
 
         override fun getItemViewType(position: Int): Int {
-            if(crimes[position].requiresPolice) return 1
+            if (crimes[position].requiresPolice) return 1
             return 0
         }
 
@@ -168,7 +170,7 @@ class CrimeListFragment: Fragment() {
         override fun getItemCount(): Int = crimes.size
     }
 
-     private object DiffUtilCallback: DiffUtil.ItemCallback<Crime>() {
+    private object DiffUtilCallback : DiffUtil.ItemCallback<Crime>() {
         override fun areItemsTheSame(oldItem: Crime, newItem: Crime): Boolean {
             return oldItem.id == newItem.id
         }

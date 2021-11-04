@@ -1,8 +1,8 @@
 package com.bignerdranch.android.criminalintent
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 //import android.util.Log
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 private const val TAG = "MainActivity"
@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
                 .commit()
         }
     }
+
     override fun onCrimeSelected(crimeId: UUID) {
         val fragment = CrimeFragment.newInstance(crimeId)
         supportFragmentManager

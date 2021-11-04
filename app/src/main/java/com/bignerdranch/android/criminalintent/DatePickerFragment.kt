@@ -5,14 +5,15 @@ import android.app.Dialog
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.core.os.bundleOf
-import androidx.fragment.app.*
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
 import java.util.*
 
 private const val ARG_DATE = "date"
 private const val REQUEST_DATE = "0"
 private const val RESULT_DATE = "resultDate"
 
-class DatePickerFragment: DialogFragment(), DatePickerDialog.OnDateSetListener {
+class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val date = arguments?.getSerializable(ARG_DATE) as Date
         val calendar = Calendar.getInstance()
@@ -25,7 +26,7 @@ class DatePickerFragment: DialogFragment(), DatePickerDialog.OnDateSetListener {
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
-        val resultDate : Date = GregorianCalendar(year, month, day).time
+        val resultDate: Date = GregorianCalendar(year, month, day).time
         setFragmentResult(REQUEST_DATE, bundleOf(RESULT_DATE to resultDate))
     }
 
