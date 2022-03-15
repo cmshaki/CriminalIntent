@@ -1,6 +1,5 @@
 package com.bignerdranch.android.criminalintent
 
-//import android.util.Log
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*

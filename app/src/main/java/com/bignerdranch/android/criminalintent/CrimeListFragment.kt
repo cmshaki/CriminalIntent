@@ -78,7 +78,6 @@ class CrimeListFragment : Fragment() {
             viewLifecycleOwner,
             { crimes ->
                 crimes.let {
-                    Log.i(TAG, "Got ${crimes.size} crimes")
                     updateUI(crimes)
                 }
             }
@@ -108,7 +107,6 @@ class CrimeListFragment : Fragment() {
     }
 
     private fun updateUI(crimes: List<Crime>) {
-        Log.d(TAG, "This is the CrimeListFragment ${adapter.currentList}")
         if (crimes.isNotEmpty()) {
             noCrimesLayout.visibility = View.GONE
         } else {
@@ -120,7 +118,6 @@ class CrimeListFragment : Fragment() {
             adapter.submitList(crimes)
         }
         crimeRecyclerView.adapter = adapter
-        Log.d(TAG, "This is the CrimeListFragment ${adapter.currentList}")
     }
 
     private inner class CrimeHolder(view: View) : RecyclerView.ViewHolder(view),
