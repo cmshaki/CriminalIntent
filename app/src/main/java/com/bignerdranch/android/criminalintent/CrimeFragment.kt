@@ -288,7 +288,6 @@ class CrimeFragment : Fragment() {
         }
 
         photoView.apply {
-            viewTreeObserver.addOnGlobalLayoutListener { }
             setOnClickListener {
                 PhotoViewerFragment.newInstance(photoFile.path).apply {
                     show(this@CrimeFragment.parentFragmentManager, DIALOG_PHOTO)
@@ -329,12 +328,18 @@ class CrimeFragment : Fragment() {
 
     private fun updatePhotoView() {
         if (photoFile.exists()) {
-//            val bitmap = getScaledBitmap(photoFile.path, requireActivity())
-            val bitmap =
-                getScaledBitmap(photoFile.path, photoView.measuredWidth, photoView.measuredHeight)
-            photoView.setImageBitmap(bitmap)
+            val width = photoView.measuredWidth
+            val height = photoView.measuredHeight
+            val bitmap = getScaledBitmap(photoFile.path, width, height)
+            photoView.apply {
+                isEnabled = true
+                setImageBitmap(bitmap)
+            }
         } else {
-            photoView.setImageDrawable(null)
+            photoView.apply {
+                isEnabled = false
+                setImageDrawable(null)
+            }
         }
     }
 
