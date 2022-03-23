@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Intento Criminal</string>
+    <string name="crime_title_hint">Ingrese un título para el crimen.</string>
+    <string name="crime_title_label">Título</string>
+    <string name="crime_details_label">Detalles</string>
+    <string name="crime_solved_label">Resuelto</string>
+    <string name="crime_title">Título del Crimen</string>
+    <string name="crime_date">Fecha del Crimen</string>
+    <string name="crime_solved">Crimen Resuelto</string>
+    <string name="contact_police">Contactar a la Policía</string>
+    <string name="new_crime">Nuevo Crimen</string>
+    <string name="no_crimes">Lo sentimos, no se encontraron delitos</string>
+    <string name="add_crime">Agregar Delitos</string>
+    <string name="crime_suspect_text">Elegir sospechos(o/a)</string>
+    <string name="crime_report_text">Enviar Reporte de Crimen</string>
+    <string name="crime_report">%1$s!
+      El crimen fue descubierto el %2$s. %3$s, y %4$s
+    </string>
+    <string name="crime_report_solved">El caso esta resuelto</string>
+    <string name="crime_report_unsolved">El caso no esta resuelto</string>
+    <string name="crime_report_no_suspect">No hay sospechos(o/a).</string>
+    <string name="crime_report_suspect">La sospechos(o/a) es %s.</string>
+    <string name="crime_report_subject">Informe de Delito Doloso</string>
+    <string name="call_suspect">Llamar Sospechoso</string>
+    <string name="send_report">Enviar informe delictivo a través de</string>
+</resources>
