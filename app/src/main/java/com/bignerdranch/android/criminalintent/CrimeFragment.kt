@@ -334,11 +334,13 @@ class CrimeFragment : Fragment() {
             photoView.apply {
                 isEnabled = true
                 setImageBitmap(bitmap)
+                contentDescription = getString(R.string.crime_photo_image_description)
             }
         } else {
             photoView.apply {
                 isEnabled = false
                 setImageDrawable(null)
+                contentDescription = getString(R.string.crime_photo_no_image_description)
             }
         }
     }
